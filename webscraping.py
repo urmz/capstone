@@ -10,6 +10,9 @@ import datetime
 import pandas as pd
 import numpy as np
 
+
+######## WEB SCRAPING ########
+
 # Webscraping Tutorial: https://codeburst.io/web-scraping-101-with-python-beautiful-soup-bb617be1f486
 
 from bs4 import BeautifulSoup
@@ -53,3 +56,38 @@ for i in range(12,262):
     site = page_contentz.find_all("p")[i].text
     if i == 12 or (i-12)%5 == 0 :
         job_web_list.append(site.encode("ascii")[1:-1])
+
+        
+        
+######## WEB DRIVER ########
+
+n_total = 2
+n_control = n_total/2
+n_treat = n_total/2 
+
+#treatment group
+for x in range(n_treat):
+    driverz = Chrome('/Users/urmilajanardan/Desktop/chromedriver')
+    #create web browser
+    for y in afam_web_list:
+        driverz.get("http://" + y )
+        time.sleep(3)
+    #drives webpage to all sites in web_list 
+    
+    for y in job_web_list:
+        driverz.get("http://" + y )
+        time.sleep(3)
+    #drives webpage to all sites in web_list 
+
+#control group
+for x in range(n_treat):
+    driver = Chrome('/Users/urmilajanardan/Desktop/chromedriver')
+    #create web browser
+    
+    for y in us_web_list:
+        driver.get("http://" + y )
+    #drives webpage to all sites in web_list 
+    
+    for y in job_web_list:
+        driver.get("http://" + y )
+    #drives webpage to all sites in web_list
