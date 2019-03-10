@@ -25,6 +25,7 @@ page_response = requests.get(page_link, timeout=5)
 page_content = BeautifulSoup(page_response.content, "html.parser")
 #we use the html parser to parse the url content and store it in a variable.
 
+#AfAm websites
 afam_web_list = []
 for i in range(12,262):
     site = page_content.find_all("p")[i].text
